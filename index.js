@@ -17,6 +17,9 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         console.log("disconnected", socket.id);
     });
+    socket.on("sendMessageDataEvent", (messageData) => {
+        console.log(messageData);
+    });
 });
 app.get("/", (req, res) => {
     res.send("I am groot");

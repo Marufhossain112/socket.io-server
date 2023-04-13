@@ -18,7 +18,8 @@ io.on("connection", (socket) => {
         console.log("disconnected", socket.id);
     });
     socket.on("sendMessageDataEvent", (messageData) => {
-        console.log(messageData);
+        // console.log(messageData);
+        socket.broadcast.emit("showGetMessage", messageData);
     });
 });
 app.get("/", (req, res) => {

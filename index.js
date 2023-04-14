@@ -17,9 +17,12 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         console.log("disconnected", socket.id);
     });
+    socket.on("joinRoom", (data) => {
+        socket.join(data);
+    });
     socket.on("sendMessageDataEvent", (messageData) => {
-        // console.log(messageData);
-        socket.broadcast.emit("showGetMessage", messageData);
+        // socket.broadcast.emit("showGetMessage", messageData);
+        socket.to(messageData.room).emit("showGetMessage", messageData);
     });
 });
 app.get("/", (req, res) => {
